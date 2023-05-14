@@ -43,6 +43,21 @@ resource "godaddy_domain_record" "joinraise-org" {
     data = "_0b7ffa93ee2382d3cf7a4bdd044b33b6.ljbhxbcwgb.acm-validations.aws"
   }
 
+  # Google Workspace MX records
+  # This means people can email us @joinraise.org
+  record {
+    name = "@"
+    type = "MX"
+    data = "smtp.google.com"
+    priority = 1
+  }
+  record {
+    name = "@"
+    type = "MX"
+    data = "fem2pule6spinj2gicz3vridom2nmedct2m5umbddh57k6wpqnlq.mx-verification.google.com"
+    priority = 15
+  }
+
   # Comment to redirect people from the GoDaddy console to here
   record {
     name = "_comment"
