@@ -58,6 +58,39 @@ resource "godaddy_domain_record" "joinraise-org" {
     priority = 15
   }
 
+  # Email security: limit outbound email
+  # This prevents people spoofing our emailing address
+  record {
+    name = "@"
+    type = "TXT"
+    data = "v=spf1 include:_spf.google.com ~all"
+  }
+  record {
+    name = "google._domainkey"
+    type = "TXT"
+    data = "v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAm3pPyQCUL5S0sn3CpeqU1b7jGg6VCFc9EV+nYZdcTcZoMhZVrZLjlp8slTVjc3PeIklQmgaDEdfZyZ+RIT9BdBIOCx6c9xz/J3T6cqYvC3PlWtAXwAR071eC7bGAQqkDPSspGj47odfeqPTZVGSjDeB9D0lg/ZwcmESCo52nTNe1l38DeKFGNNBbEIB3UIri3cJkMa8OJZabMV/gZN0f7EeiaAYMJqsZiH8o854NJytjrT73weqxEsCr3U2WyJcU+9QqSTviFgt6Wu+VXPS+Nigmk4HKaLOwp7Kb93A8bsBgOH31DultoTGd224tb0djd85QIsmXyrG9Mz0ON7lM9wIDAQAB"
+  }
+  record {
+    name = "_dmarc"
+    type = "TXT"
+    data = "v=DMARC1; p=none; rua=mailto:dmarc-rua@dmarc.service.gov.uk;"
+  }
+  record {
+    name = "_smtp._tls"
+    type = "TXT"
+    data = "v=TLSRPTv1;rua=mailto:tls-rua@mailcheck.service.ncsc.gov.uk"
+  }
+  record {
+    name = "mta-sts"
+    type = "CNAME"
+    data = "raisenational.github.io"
+  }
+  record {
+    name = "_mta-sts"
+    type = "TXT"
+    data = "v=STSv1; id=1688860120"
+  }
+
   # Comment to redirect people from the GoDaddy console to here
   record {
     name = "_comment"
@@ -116,6 +149,30 @@ resource "godaddy_domain_record" "mayweekalternative-org-uk" {
     name = "_73e048653da53f2b94edb503e509e0f3"
     type = "CNAME"
     data = "_763a5da41bfef5c66348c70ffb215e58.dsrmygwdhx.acm-validations.aws"
+  }
+
+  # Email security: disable outbound and inbound email
+  # This prevents people spoofing our emailing address
+  record {
+    name = "@"
+    type = "TXT"
+    data = "v=spf1 -all"
+  }
+  record {
+    name = "*._domainkey"
+    type = "TXT"
+    data = "v=DKIM1; p="
+  }
+  record {
+    name = "_dmarc"
+    type = "TXT"
+    data = "v=DMARC1; p=none; rua=mailto:dmarc-rua@dmarc.service.gov.uk;"
+  }
+  record {
+    name = "@"
+    type = "MX"
+    data = "."
+    priority = 0
   }
 
   # Comment to redirect people from the GoDaddy console to here
