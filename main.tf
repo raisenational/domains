@@ -43,6 +43,13 @@ resource "godaddy_domain_record" "joinraise-org" {
     data = "_0b7ffa93ee2382d3cf7a4bdd044b33b6.ljbhxbcwgb.acm-validations.aws"
   }
 
+  # Security: MyNCSC validation
+  record {
+    name = "_asvdns-20507f5b-f636-4d72-96cd-7754b32498aa"
+    type = "TXT"
+    data = "asvdns_2479101f-779d-40d6-9e78-1c33b7e6a78c"
+  }
+
   # Google Workspace MX records
   # This means people can email us @joinraise.org
   record {
@@ -149,6 +156,13 @@ resource "godaddy_domain_record" "mayweekalternative-org-uk" {
     name = "_73e048653da53f2b94edb503e509e0f3"
     type = "CNAME"
     data = "_763a5da41bfef5c66348c70ffb215e58.dsrmygwdhx.acm-validations.aws"
+  }
+
+  # Security: MyNCSC validation
+  record {
+    name = "_asvdns-acd9c4b2-d245-4aa1-b854-c5b3b83044fa"
+    type = "TXT"
+    data = "asvdns_41404c32-829e-4f17-bbe1-1556afefc569"
   }
 
   # Email security: disable outbound and inbound email
