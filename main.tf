@@ -80,7 +80,7 @@ resource "godaddy_domain_record" "joinraise-org" {
   record {
     name = "_dmarc"
     type = "TXT"
-    data = "v=DMARC1; p=none; rua=mailto:dmarc-rua@dmarc.service.gov.uk;"
+    data = "v=DMARC1; p=reject; rua=mailto:dmarc-rua@dmarc.service.gov.uk;"
   }
   record {
     name = "_smtp._tls"
@@ -95,7 +95,7 @@ resource "godaddy_domain_record" "joinraise-org" {
   record {
     name = "_mta-sts"
     type = "TXT"
-    data = "v=STSv1; id=1688860120"
+    data = "v=STSv1; id=1689199424"
   }
 
   # Comment to redirect people from the GoDaddy console to here
@@ -180,7 +180,7 @@ resource "godaddy_domain_record" "mayweekalternative-org-uk" {
   record {
     name = "_dmarc"
     type = "TXT"
-    data = "v=DMARC1; p=none; rua=mailto:dmarc-rua@dmarc.service.gov.uk;"
+    data = "v=DMARC1; p=reject; rua=mailto:dmarc-rua@dmarc.service.gov.uk;"
   }
   record {
     name = "@"
