@@ -43,6 +43,13 @@ resource "godaddy_domain_record" "joinraise-org" {
     data = "_0b7ffa93ee2382d3cf7a4bdd044b33b6.ljbhxbcwgb.acm-validations.aws"
   }
 
+  # Google validation, e.g. for search console
+  record {
+    name = "@"
+    type = "TXT"
+    data = "google-site-verification=NyNQ0CnbnYG_YMmxGtOXz9kTEz1n_eG6wNcurbFXBDU"
+  }
+
   # Security: MyNCSC validation
   record {
     name = "_asvdns-20507f5b-f636-4d72-96cd-7754b32498aa"
@@ -156,6 +163,13 @@ resource "godaddy_domain_record" "mayweekalternative-org-uk" {
     name = "_73e048653da53f2b94edb503e509e0f3"
     type = "CNAME"
     data = "_763a5da41bfef5c66348c70ffb215e58.dsrmygwdhx.acm-validations.aws"
+  }
+
+  # Google validation, e.g. for search console
+  record {
+    name = "@"
+    type = "TXT"
+    data = "google-site-verification=XpHEURdY6mVzaUmnWJt-lXt1N-EqnlmiCHdTw-1ENU8"
   }
 
   # Security: MyNCSC validation
