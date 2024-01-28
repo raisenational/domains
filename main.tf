@@ -42,6 +42,13 @@ resource "godaddy_domain_record" "joinraise-org" {
     type = "CNAME"
     data = "_0b7ffa93ee2382d3cf7a4bdd044b33b6.ljbhxbcwgb.acm-validations.aws"
   }
+  # - Account: 405129592067 (raise)
+  # - Region: us-east-1
+  record {
+    name = "_7405c4e5c72969f8a1ff5815dac6fa93"
+    type = "CNAME"
+    data = "_d793ea3e1b8d1678997bbd0be4c1b2a9.mhbtsbpdnt.acm-validations.aws."
+  }
 
   # Google validation, e.g. for search console
   record {
@@ -64,12 +71,6 @@ resource "godaddy_domain_record" "joinraise-org" {
     type = "MX"
     data = "smtp.google.com"
     priority = 1
-  }
-  record {
-    name = "@"
-    type = "MX"
-    data = "fem2pule6spinj2gicz3vridom2nmedct2m5umbddh57k6wpqnlq.mx-verification.google.com"
-    priority = 15
   }
 
   # Email security: limit outbound email
@@ -163,6 +164,13 @@ resource "godaddy_domain_record" "mayweekalternative-org-uk" {
     name = "_73e048653da53f2b94edb503e509e0f3"
     type = "CNAME"
     data = "_763a5da41bfef5c66348c70ffb215e58.dsrmygwdhx.acm-validations.aws"
+  }
+  # - Account: 405129592067 (raise)
+  # - Region: us-east-1
+  record {
+    name = "_dbc63cffd885785cdabd7084fa1418fd"
+    type = "CNAME"
+    data = "_9096b98daa94f3b691e6dca77f263733.mhbtsbpdnt.acm-validations.aws."
   }
 
   # Google validation, e.g. for search console
