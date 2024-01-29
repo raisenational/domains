@@ -22,7 +22,7 @@ resource "godaddy_domain_record" "joinraise-org" {
   record {
     name = "www"
     type = "CNAME"
-    data = "d359ysn69p1ty6.cloudfront.net"
+    data = "d12z4d0z4gotdp.cloudfront.net"
     ttl  = 3600
   }
 
@@ -30,18 +30,11 @@ resource "godaddy_domain_record" "joinraise-org" {
   record {
     name = "dev"
     type = "CNAME"
-    data = "d3hl9a8m5rqrdy.cloudfront.net"
+    data = "djcqvov1pxiot.cloudfront.net"
     ttl  = 600
   }
 
   # AWS ACM validation for CloudFront:
-  # - Account: 338337944728 (domdomegg)
-  # - Region: us-east-1
-  record {
-    name = "_c14065ed8a00d1508bfe69997ed45e55"
-    type = "CNAME"
-    data = "_0b7ffa93ee2382d3cf7a4bdd044b33b6.ljbhxbcwgb.acm-validations.aws"
-  }
   # - Account: 405129592067 (raise)
   # - Region: us-east-1
   record {
@@ -145,7 +138,7 @@ resource "godaddy_domain_record" "mayweekalternative-org-uk" {
   record {
     name = "www"
     type = "CNAME"
-    data = "d2mkoxujy60d5n.cloudfront.net"
+    data = "d2wmuv47wx2gpg.cloudfront.net"
     ttl  = 3600
   }
 
@@ -153,18 +146,11 @@ resource "godaddy_domain_record" "mayweekalternative-org-uk" {
   record {
     name = "dev"
     type = "CNAME"
-    data = "d3urq55vsmb356.cloudfront.net"
+    data = "d22z5quw14qs43.cloudfront.net"
     ttl  = 600
   }
 
   # AWS ACM validation for CloudFront:
-  # - Account: 338337944728 (domdomegg)
-  # - Region: us-east-1
-  record {
-    name = "_73e048653da53f2b94edb503e509e0f3"
-    type = "CNAME"
-    data = "_763a5da41bfef5c66348c70ffb215e58.dsrmygwdhx.acm-validations.aws"
-  }
   # - Account: 405129592067 (raise)
   # - Region: us-east-1
   record {
