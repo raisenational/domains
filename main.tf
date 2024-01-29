@@ -73,10 +73,29 @@ resource "godaddy_domain_record" "joinraise-org" {
     type = "TXT"
     data = "v=spf1 include:_spf.google.com ~all"
   }
+  # Outbound email: Google Workspace
   record {
     name = "google._domainkey"
     type = "TXT"
     data = "v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAm3pPyQCUL5S0sn3CpeqU1b7jGg6VCFc9EV+nYZdcTcZoMhZVrZLjlp8slTVjc3PeIklQmgaDEdfZyZ+RIT9BdBIOCx6c9xz/J3T6cqYvC3PlWtAXwAR071eC7bGAQqkDPSspGj47odfeqPTZVGSjDeB9D0lg/ZwcmESCo52nTNe1l38DeKFGNNBbEIB3UIri3cJkMa8OJZabMV/gZN0f7EeiaAYMJqsZiH8o854NJytjrT73weqxEsCr3U2WyJcU+9QqSTviFgt6Wu+VXPS+Nigmk4HKaLOwp7Kb93A8bsBgOH31DultoTGd224tb0djd85QIsmXyrG9Mz0ON7lM9wIDAQAB"
+  }
+  # Outbound email: AWS SES
+  # - Account: 405129592067 (raise)
+  # - Region: us-east-1
+  record {
+    name = "ekovily557ui4ymxylyq27cas77ukiso._domainkey"
+    type = "CNAME"
+    data = "ekovily557ui4ymxylyq27cas77ukiso.dkim.amazonses.com"
+  }
+  record {
+    name = "akpthi4mug7nqbhdz3xcrukxoktjq4ib._domainkey"
+    type = "CNAME"
+    data = "akpthi4mug7nqbhdz3xcrukxoktjq4ib.dkim.amazonses.com"
+  }
+  record {
+    name = "s4xoodvty6ycqpcbbfubkyosqpw7rf2x._domainkey"
+    type = "CNAME"
+    data = "s4xoodvty6ycqpcbbfubkyosqpw7rf2x.dkim.amazonses.com"
   }
   record {
     name = "_dmarc"
