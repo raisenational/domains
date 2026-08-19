@@ -75,9 +75,9 @@ resource "godaddy_domain_record" "joinraise-org" {
   # Google Workspace MX records
   # This means people can email us @joinraise.org
   record {
-    name = "@"
-    type = "MX"
-    data = "smtp.google.com"
+    name     = "@"
+    type     = "MX"
+    data     = "smtp.google.com"
     priority = 1
   }
 
@@ -246,9 +246,9 @@ resource "godaddy_domain_record" "mayweekalternative-org-uk" {
     data = "v=DMARC1; p=reject; rua=mailto:dmarc-rua@dmarc.service.gov.uk;"
   }
   record {
-    name = "@"
-    type = "MX"
-    data = "."
+    name     = "@"
+    type     = "MX"
+    data     = "."
     priority = 0
   }
 
