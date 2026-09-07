@@ -34,6 +34,21 @@ resource "godaddy_domain_record" "joinraise-org" {
     ttl  = 600
   }
 
+  # Raise Treasury application on Railway. The verification TXT is kept
+  # alongside the route so ownership and certificate issuance fail closed.
+  record {
+    name = "treasurer"
+    type = "CNAME"
+    data = "jbpw986q.up.railway.app"
+    ttl  = 600
+  }
+  record {
+    name = "_railway-verify.treasurer"
+    type = "TXT"
+    data = "railway-verify=b131160d7d31704fb7fdcb086456a5ee46623cc447f1ebc953191870dbe9c329"
+    ttl  = 600
+  }
+
   # AWS ACM validation for CloudFront:
   # - Account: 405129592067 (raise)
   # - Region: us-east-1
@@ -60,9 +75,9 @@ resource "godaddy_domain_record" "joinraise-org" {
   # Google Workspace MX records
   # This means people can email us @joinraise.org
   record {
-    name = "@"
-    type = "MX"
-    data = "smtp.google.com"
+    name     = "@"
+    type     = "MX"
+    data     = "smtp.google.com"
     priority = 1
   }
 
@@ -78,6 +93,27 @@ resource "godaddy_domain_record" "joinraise-org" {
     name = "google._domainkey"
     type = "TXT"
     data = "v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAm3pPyQCUL5S0sn3CpeqU1b7jGg6VCFc9EV+nYZdcTcZoMhZVrZLjlp8slTVjc3PeIklQmgaDEdfZyZ+RIT9BdBIOCx6c9xz/J3T6cqYvC3PlWtAXwAR071eC7bGAQqkDPSspGj47odfeqPTZVGSjDeB9D0lg/ZwcmESCo52nTNe1l38DeKFGNNBbEIB3UIri3cJkMa8OJZabMV/gZN0f7EeiaAYMJqsZiH8o854NJytjrT73weqxEsCr3U2WyJcU+9QqSTviFgt6Wu+VXPS+Nigmk4HKaLOwp7Kb93A8bsBgOH31DultoTGd224tb0djd85QIsmXyrG9Mz0ON7lM9wIDAQAB"
+  }
+  # Raise Treasury transactional email. This is a sending-only Resend
+  # subdomain; root Google Workspace and existing SES records are unchanged.
+  record {
+    name = "resend._domainkey.notify"
+    type = "TXT"
+    data = "p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCu2+HUc/iaNE25L7RlTr5/7iHKvaKZaZkqK5M63dM6aQNO5vMkwCQyPPyIlwF4D+ycjR1ARCD1ebZiFSQFEgrkcqEdU1heGCa0hAwGPqZaNmwaVsYtHcQCRPUD5Z4IAXsoFy7syuyWwPqD3qKOLsM8aKvMzLeup6vPgFQB3xFxCQIDAQAB"
+    ttl  = 600
+  }
+  record {
+    name     = "send.notify"
+    type     = "MX"
+    data     = "feedback-smtp.eu-west-1.amazonses.com"
+    priority = 10
+    ttl      = 600
+  }
+  record {
+    name = "send.notify"
+    type = "TXT"
+    data = "v=spf1 include:amazonses.com ~all"
+    ttl  = 600
   }
   # Outbound email: AWS SES
   # - Account: 405129592067 (raise)
@@ -210,9 +246,9 @@ resource "godaddy_domain_record" "mayweekalternative-org-uk" {
     data = "v=DMARC1; p=reject; rua=mailto:dmarc-rua@dmarc.service.gov.uk;"
   }
   record {
-    name = "@"
-    type = "MX"
-    data = "."
+    name     = "@"
+    type     = "MX"
+    data     = "."
     priority = 0
   }
 
