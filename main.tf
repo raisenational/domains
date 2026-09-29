@@ -94,23 +94,24 @@ resource "godaddy_domain_record" "joinraise-org" {
     type = "TXT"
     data = "v=DKIM1; k=rsa; p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAm3pPyQCUL5S0sn3CpeqU1b7jGg6VCFc9EV+nYZdcTcZoMhZVrZLjlp8slTVjc3PeIklQmgaDEdfZyZ+RIT9BdBIOCx6c9xz/J3T6cqYvC3PlWtAXwAR071eC7bGAQqkDPSspGj47odfeqPTZVGSjDeB9D0lg/ZwcmESCo52nTNe1l38DeKFGNNBbEIB3UIri3cJkMa8OJZabMV/gZN0f7EeiaAYMJqsZiH8o854NJytjrT73weqxEsCr3U2WyJcU+9QqSTviFgt6Wu+VXPS+Nigmk4HKaLOwp7Kb93A8bsBgOH31DultoTGd224tb0djd85QIsmXyrG9Mz0ON7lM9wIDAQAB"
   }
-  # Raise Treasury transactional email. This is a sending-only Resend
-  # subdomain; root Google Workspace and existing SES records are unchanged.
+  # Raise Treasury sends as treasurer@joinraise.org through Resend (eu-west-1).
+  # Keep these root-domain records in Terraform: notify.joinraise.org was retired.
+  # The send return path leaves Google Workspace and existing SES records unchanged.
   record {
-    name = "resend._domainkey.notify"
+    name = "resend._domainkey"
     type = "TXT"
-    data = "p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCu2+HUc/iaNE25L7RlTr5/7iHKvaKZaZkqK5M63dM6aQNO5vMkwCQyPPyIlwF4D+ycjR1ARCD1ebZiFSQFEgrkcqEdU1heGCa0hAwGPqZaNmwaVsYtHcQCRPUD5Z4IAXsoFy7syuyWwPqD3qKOLsM8aKvMzLeup6vPgFQB3xFxCQIDAQAB"
+    data = "p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCku/rbhOh/XN1TqyGRFw0L+LedBG9XqJEVSCQ9PCRtik78oePlAqq70jmtt3WeLhh49147HvCgm+mNN1c+EkiAsfW6WB1xnwlwSyuJX1FLbGTU3mUuk55GlAznLv4tjjIlPtGWZiTy3atIhI/MNG9zOIVjVJA/cNRzdLuJAHbdDQIDAQAB"
     ttl  = 600
   }
   record {
-    name     = "send.notify"
+    name     = "send"
     type     = "MX"
     data     = "feedback-smtp.eu-west-1.amazonses.com"
     priority = 10
     ttl      = 600
   }
   record {
-    name = "send.notify"
+    name = "send"
     type = "TXT"
     data = "v=spf1 include:amazonses.com ~all"
     ttl  = 600
